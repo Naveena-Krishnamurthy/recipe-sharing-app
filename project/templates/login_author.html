@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Author Login</title>
+  <style>
+   body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 0 15px;
+      color: #b22222; /* dark red */
+      background: url('https://i.pinimg.com/736x/46/72/e7/4672e7278a6b2f5b0fea4acf59cc3650.jpg') no-repeat center center;
+      background-size: 100% 100%;
+      position: relative;
+      text-align: center;
+    }
+
+    .login-container {
+      position: relative;
+      z-index: 1;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(178, 34, 34, 0.5); /* darkred glow */
+      max-width: 400px;
+      width: 100%;
+      color: #8b0000; /* dark red */
+      box-sizing: border-box; /* Ensures padding is included in width */
+    }
+
+    h2 {
+      margin: 0 0 30px 0;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ff0000; /* bright red */
+      text-shadow: 0 2px 8px rgba(255, 0, 0, 0.7);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #cc0000;
+      text-shadow: 0 1px 2px rgba(204, 0, 0, 0.4);
+      text-align: left;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #8b0000;
+      border-radius: 6px;
+      font-size: 16px;
+      background: #2a2a2a;
+      color: #ff6347; /* tomato red */
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      box-sizing: border-box; /* Ensures padding is included in width */
+    }
+
+    input[type="text"]::placeholder,
+    input[type="password"]::placeholder {
+      color: #ff7f7f99; /* lighter transparent red */
+    }
+
+    input:focus {
+      border-color: #cc0000;
+      outline: none;
+      box-shadow: 0 0 6px #cc0000;
+      background: #3a1a1a;
+    }
+
+    .error-message {
+      color: #ff4d4d; /* error bright red */
+      font-weight: 700;
+      text-align: center;
+      margin: -15px 0 20px 0;
+      padding: 0;
+      text-shadow: 0 0 5px #ff4d4d;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 10px;
+      background-color: #cc0000;
+      border: none;
+      color: #fff;
+      font-weight: 700;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.25s ease;
+      box-shadow: 0 0 10px #cc0000;
+    }
+
+    button:hover {
+      background-color: #990000;
+      box-shadow: 0 0 15px #990000;
+    }
+
+    p {
+      text-align: center;
+      margin: 20px 0 0 0;
+      font-size: 14px;
+      color: #b22222;
+      text-shadow: 0 1px 2px rgba(178, 34, 34, 0.3);
+    }
+
+    p a {
+      color: #ff6666;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    p a:hover {
+      color: #ff9999;
+      text-decoration: underline;
+    }
+
+    /* Added for better link spacing */
+    .links-container {
+      margin-top: 25px;
+    }
+
+    .links-container p {
+      margin: 10px 0;
+    }
+    .foo {
+  position: absolute;
+  left: 50%;
+  bottom: 50px;        /* 500px from bottom */
+  transform: translateX(-50%); /* horizontal centering */
+  font-size: 2rem;
+  font-weight: bolder;
+}
+  </style>
+</head>
+<body>
+  <div class="login-container" role="main" aria-labelledby="login-title">
+    <h2 id="login-title">Author Login</h2>
+
+    {% if error %}
+      <p class="error-message">{{ error }}</p>
+    {% endif %}
+
+    <form method="post" action="/login/author" novalidate>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" placeholder="Username" required autofocus autocomplete="username" />
+      
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Password" required autocomplete="current-password" />
+      
+      <button type="submit" aria-label="Login">Login</button>
+    </form>
+
+    <p>New user? <a href="/register/author">Register here</a></p>
+    <p><a href="/profile-selection">⬅ Back to Profile Selection</a></p>
+  </div>
+   <div class="foo">
+  Spice Bloom</div>
+</body>
+</html>

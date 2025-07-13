@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>📌 Your Saved Recipes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+       *{
+            padding: 0;
+            margin: 0;
+              box-sizing: border-box;
+        }
+      html, body {
+    color: #d62c1a;
+       background: url('https://i.pinimg.com/736x/46/72/e7/4672e7278a6b2f5b0fea4acf59cc3650.jpg') no-repeat center center;
+      background-size:100% 100%;
+    font-family: Arial, sans-serif;
+    padding:0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2.8rem;
+      color: #b30000; /* deep red */
+      font-family: 'Brush Script MT', cursive, sans-serif;
+      font-weight: normal;
+      text-shadow: 1px 1px 3px #e67478;
+      padding:80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .recipe-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10rem;
+     align-items: center;
+margin:10px;
+    }
+
+    .recipe-card {
+      border-radius: 12px;
+      overflow: hidden;
+      width: 280px;
+      box-shadow: 0 4px 12px rgba(196, 30, 58, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+      font-family: 'Comic Sans MS', cursive, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #e67478; /* lighter red */
+      border: 1px solid #c41e3a;
+    }
+
+    .recipe-card:hover {
+      transform: translateY(-6px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(196, 30, 58, 0.8);
+      border-color:#b30000;;
+    }
+
+    .recipe-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 2px solid #c41e3a;
+    }
+
+    .recipe-card h3 {
+      margin: 1rem 0 0.5rem;
+      font-size: 1.4rem;
+      color: #b30000; /* warm red */
+      font-family: 'Brush Script MT', cursive, sans-serif;
+    }
+
+    .recipe-card p {
+      color: #d62c1a; /* red */
+      font-size: 1rem;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    .recipe-card a {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      background: #b30000; /* deep red */
+      color: #f8f8f8; /* light text */
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-family: 'Comic Sans MS', cursive, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .recipe-card a:hover {
+      background: #d62c1a; /* brighter red */
+      color: #ffffff; /* white */
+    }
+
+    .no-recipes {
+      text-align: center;
+      font-size: 1.3rem;
+      color: #c41e3a;
+      font-family: 'Comic Sans MS', cursive, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin-top: 2rem;
+      font-style: italic;
+    }
+         .foo {
+  position: absolute;
+  left: 680px;
+  bottom: 30px;        /* 500px from bottom */
+  transform: translateX(-50%); /* horizontal centering */
+  font-size: 2rem;
+  font-weight: bolder;
+}
+.back{
+  background-color: #b30000; 
+  color: white; 
+  border: none; 
+  padding: 10px 20px; 
+  border-radius: 6px; 
+  font-weight: bold; 
+  cursor: pointer;
+  margin-left:45% ;
+  margin-top: 20%;
+
+}
+  </style>
+</head>
+<body>
+
+  <h1>Your Saved Recipes</h1>
+
+  {% if all_rec %}
+  <div class="recipe-container">
+    {% for rec in all_rec %}
+    <div class="recipe-card">
+      {% if rec.image_path %}
+      <img src="{{ rec.image_path }}" alt="{{ rec.title | default('Recipe Image') }}">
+      {% endif %}
+      <h3>{{ rec.title }}</h3>
+      <p><em>{{ rec.category }}</em></p>
+      <a href="/recipes/{{ rec.id }}">View Recipe</a>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="no-recipes">
+    <p>You have not saved any recipes yet.</p>
+  </div>
+  {% endif %}
+  <div style="padding: 10px 20px;">
+  <button onclick="history.back()" class="back">
+    ← Back
+  </button>
+</div>
+
+<div class="foo">
+  Spice Bloom</div>
+</body>
+</html>

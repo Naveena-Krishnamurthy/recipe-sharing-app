@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>All Recipes</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=bookmark" />
+<style>
+body {
+  font-family: cursive, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  background: url('https://i.pinimg.com/736x/46/72/e7/4672e7278a6b2f5b0fea4acf59cc3650.jpg') no-repeat center top;
+  background-size: cover;
+  background-attachment: fixed;
+  color: #800000;
+  min-height: 100vh;
+}
+
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 2.5rem;
+    color: #b30000;
+  }
+
+  .top-links {
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px 20px;
+  }
+
+  .top-links a {
+    font-weight: bold;
+    color: white;
+    background-color: #b30000;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.6s;
+  }
+
+  .top-links a:hover {
+    background-color: #cc0000;
+    transform: rotate(360deg);
+    transition: 0.8s;
+  }
+
+  .search-form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+
+  .search-form input[type="text"] {
+    padding: 10px;
+    width: 320px;
+    border: 2px solid #b30000;
+    border-radius: 6px 0 0 6px;
+    background-color: #fff0f0;
+    color: #800000;
+    font-weight: bold;
+    font-size: 1rem;
+    outline: none;
+  }
+
+  .search-form input[type="text"]:focus {
+    border-color: #cc0000;
+    background-color: #ffffff;
+  }
+
+  .search-form button {
+    padding: 10px 18px;
+    border: none;
+    background-color: #b30000;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+
+  .search-form button:hover {
+    background-color: #cc0000;
+  }
+
+  .recipe-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    align-items: stretch;
+  }
+
+  .recipe-card {
+    background-color: #fff5f5;
+    border-radius: 12px;
+    padding: 15px;
+    width: 260px;
+    cursor: pointer;
+    text-align: center;
+    color: #800000;
+    transition: transform 0.6s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .recipe-card:hover {
+    transform: scale(1.1);
+  }
+
+  .recipe-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    flex-shrink: 0;
+  }
+
+  .recipe-title {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #b30000;
+  }
+
+  .recipe-category {
+    font-style: italic;
+    color: #cc0000;
+    margin-bottom: 14px;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: space-around;
+    gap: 12px;
+    margin-top: auto;
+  }
+
+  .rate-btn,
+  .save-btn {
+    flex: 1;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+
+  .rate-btn {
+    background-color: #b30000;
+    color: white;
+  }
+
+  .rate-btn:hover {
+    background-color: #cc0000;
+  }
+
+  .save-btn {
+    background-color: #ffd6d6;
+    color: #800000;
+    border: 1px solid #ffb3b3;
+  }
+
+  .save-btn:hover {
+    background-color: #ffb3b3;
+  }
+
+  .no-results {
+    text-align: center;
+    font-style: italic;
+    margin-top: 40px;
+    color: #b30000;
+    font-size: 1.2rem;
+  }
+
+  .logout {
+    background-color: #b30000;
+    border: 2px solid #ffb3b3;
+    display: flex;
+    width: 10%;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 6px;
+    position: absolute;
+    left: 45%;
+    margin-top: 30px;
+  }
+
+  .logout:hover {
+    background-color: #cc0000;
+    cursor: pointer;
+  }
+
+  .logout a {
+    text-decoration: none;
+    color: #fff;
+  }
+.foo{
+  width: 100%;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bolder;
+  margin-top: 80px;
+}
+/* Gift box bounce */
+.gift-container {
+  font-size: 3rem;
+  position: fixed;
+  bottom: 550px;
+  right: 30px;
+  cursor: pointer;
+  animation: bounce 1s infinite alternate, glow 1.5s infinite ease-in-out;
+  z-index: 1000;
+  padding: 10px;
+  border-radius: 60%;
+  /* background: #fff; */
+  /*box-shadow: 0 0 10px #ff4081, 0 0 20px #ff4081;*/
+  transition: transform 0.3s ease;
+}
+
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-15px); }
+}
+
+.gift-container:hover {
+  transform: scale(1.2);
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fff8f0;
+  margin: 15% auto;
+  padding: 30px;
+  border: 2px solid #b30000;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  color: #800000;
+}
+
+.close-btn {
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+</style>
+
+</head>
+<body>
+  <script>
+const tips = [
+  "Always start with tempering mustard seeds, cumin, curry leaves, and dals in hot oil or ghee.",
+  "Use fresh grated coconut or coconut milk for authentic flavor in chutneys and curries.",
+  "Ferment dosa/idli batter overnight in a warm place for best results.",
+  "Grind spices in a heavy grinder and clean immediately to avoid lingering smells.",
+  "Use asafoetida (hing) in tempering to enhance aroma, especially in lentil dishes.",
+  "Add salt gradually and balance excess spice with jaggery or lemon juice.",
+  "To keep greens vibrant, add a pinch of sugar while boiling and shock in ice water.",
+  "Temper curry leaves in hot oil for rasam or sambar at the end of cooking.",
+  "Use tamarind extract for sambar after vegetables are softened.",
+  "Grate tomatoes for rasam base and finish with pepper and curry leaves.",
+  "Serve traditional meals on banana leaves for aroma and authenticity.",
+  "Make coconut rice with grated coconut, green chili, peanuts, and curry leaves.",
+  "Soak rice and use clay pots for authentic texture and flavor.",
+  "Finish dishes with ghee for aroma and taste.",
+  "Store chutney powders in masala dabba for quick meals.",
+  "Double-fry vadas for extra crispiness: once half-done, freeze, then refry.",
+  "Make moong dal payasam with jaggery and coconut milk in one pot.",
+  "Use neutral nonstick pans and constant stirring for kurma or kadala curry.",
+  "Soak eggplant in water to avoid browning before cooking.",
+  "Store ginger-garlic paste with oil and salt to extend shelf life.",
+  "Toss leftover rice with lemon juice, chilies, and curry leaves for lemon rice.",
+  "Use fresh batter over store-bought for fluffy idlis.",
+  "Ghee rice with fried cashews, coconut slices, and curry leaves = festive staple.",
+  "Grind coconut with water first, then chilies + tamarind for chutney.",
+  "In summer, ferment idli/dosa batter in a cool area or fridge.",
+  "Use a stone mortar pestle (sil batta) for grinding fresh spice blends.",
+  "Use ghee instead of oil when tempering payasam or sweet pongal.",
+  "Chutneys taste fresher with coriander, green chili, and a final tempering.",
+  "Use tomato pulp, peanuts, and leftover rice for instant tomato rice.",
+  "Make upma in one pot: roast rava, add tempered spices and vegetables.",
+  "Use yogurt + coconut paste for avial; finish with coconut oil.",
+  "Reheat rice or pongal with ghee and curry leaves for freshness.",
+  "Soak paneer in hot water before adding to gravies for better texture.",
+  "Wash rice 5 times and soak before cooking for fluffier grains.",
+  "Balance too much tamarind or spice with jaggery in sambar.",
+  "Fix oversalted curries by adding raw potato chunks while boiling.",
+  "Slit chilies and cucumbers instead of chopping to release flavor slowly.",
+  "Use boiled vegetable water in chapati dough or gravies for nutrition.",
+  "Steam idlis in covered trays and rotate halfway for even cooking.",
+  "Tempered sesame oil + curry leaves adds aroma to rasam just before serving.",
+  "Wipe dosa pan with a wet cloth between dosas to prevent sticking.",
+  "Remove oil smells by heating curry leaves in oil and discarding.",
+  "Wash coconut graters immediately after use to prevent smell and stains.",
+  "Stock a masala dabba with mustard, cumin, chana dal, red chili, turmeric, etc.",
+  "Make spice blends (podis) in advance and store in airtight jars.",
+  "Serve Sadya courses in proper order: dal → sambar → rasam → payasam.",
+  "Use coconut scrapers to get fresh coconut easily for gravies and sweets.",
+  "Add curd gently to hot dishes like avial without letting it boil.",
+  "Serve rasam hot and fresh for best digestion and taste.",
+  "Simmer avial and payasam slowly to help flavors meld beautifully."
+];
+
+
+  function showTipModal() {
+    const randomTip = tips[Math.floor(Math.random() * tips.length)];
+    document.getElementById("tipText").innerText = randomTip;
+    document.getElementById("tipModal").style.display = "block";
+  }
+
+  function closeModal() {
+    document.getElementById("tipModal").style.display = "none";
+  }
+
+
+</script>
+ <!-- Surprise Gift Box -->
+<div class="gift-container" onclick="showTipModal()">
+ <h1>🎁</h1> 
+</div>
+
+<!-- Modal for Cooking Tip -->
+<div class="modal" id="tipModal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <h2>🎉 Cooking Tip</h2>
+    <p id="tipText"></p>
+  </div>
+</div>
+    <div class="top-links">
+      <a href="/saved-recipes">View Saved Recipes</a>
+    </div>
+
+    <h1>Discover All Recipes</h1>
+
+
+    <!-- Search form -->
+    <form method="get" action="/user/search" class="search-form">
+      <input
+        type="text"
+        name="title"
+        placeholder="Search by Title or Category"
+        value="{{ request.query_params.get('title', '') }}"
+        autocomplete="off"
+      />
+      <button type="submit">Search</button>
+    </form>
+
+    {% if recipes %}
+    <div class="recipe-container">
+      {% for recipe in recipes %}
+      <div class="recipe-card" onclick="window.location.href='/recipes/{{recipe.id}}'">
+        {% if recipe.image_path %}
+        <img src="{{ recipe.image_path }}" alt="Recipe Image" />
+        {% endif %}
+        <div class="recipe-title">{{ recipe.title }}</div>
+        <div class="recipe-category">{{ recipe.category }}</div>
+        <div class="button-group">
+          <a href="/comment/{{ recipe.id }}">
+            <button type="button" class="rate-btn">Rate This!!</button>
+          </a>
+          <form action="/save/{{recipe.id}}" method="post">
+            <button type="submit" class="save-btn">Save</button>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="no-results">No recipes found.</p>
+    {% endif %}
+    <br><br>
+   
+
+    <div class="logout"><a href="/logout">Logout</a></div>
+    <div class="foo">
+  Spice Bloom</div>
+</body>
+</html>

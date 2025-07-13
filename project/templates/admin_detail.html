@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>{{ recipe.title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            color: #ed1e1a; /* warm red text */
+            background: url('https://i.pinimg.com/736x/46/72/e7/4672e7278a6b2f5b0fea4acf59cc3650.jpg') no-repeat center center;
+      background-size: 100% 100%; 
+        }
+
+        h1 {
+            text-align: center;
+            color: #0a0a0a; /* bright red title */
+            text-shadow: 0 0 8px #e53935;
+        }
+
+        img {
+            display: block;
+            max-width: 500px;
+            width: 100%;
+            height: auto;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(229, 57, 53, 0.5);
+            border: 2px solid #e53935;
+        }
+
+        h3, h4 {
+            color: #f91717; /* softer red headings */
+            text-shadow: 0 0 3px #b71c1c;
+        }
+
+        p {
+            line-height: 1.6;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(229, 57, 53, 0.3);
+            color: #030303; /* lighter red text */
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 30px;
+            text-decoration: none;
+            background-color: #dc0a07; /* red button */
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            box-shadow: 0 2px 6px rgba(229, 57, 53, 0.6);
+            transition: background 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #c62828;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ recipe.title }}</h1>
+    <img src="{{ recipe.image_path }}" alt="Recipe Image" />
+
+    <h3>Category: {{ recipe.category }}</h3>
+
+    <h4>Ingredients:</h4>
+    <p>{{ recipe.ingredients }}</p>
+
+    <h4>Instructions:</h4>
+    <p>{{ recipe.instructions }}</p>
+
+    <a href="/admin/dashboard">⬅ Back to Dashboard</a>
+</body>
+</html>

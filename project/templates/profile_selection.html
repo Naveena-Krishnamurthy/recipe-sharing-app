@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Welcome to Spice Bloom - Your Culinary Journey Begins Here</title>
+  <meta name="description" content="Spice Bloom - Your culinary community for sharing and discovering delicious recipes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/> 
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: url('https://i.pinimg.com/736x/46/72/e7/4672e7278a6b2f5b0fea4acf59cc3650.jpg')  no-repeat center center fixed;
+      background-size: cover;
+      color: #000;
+      line-height: 1.7;
+      margin: 0;
+      padding: 40px 50px;
+    }
+ 
+    .brand {
+      font-size: 4rem;
+      font-weight: bold;
+      color: #f61010;
+      text-align: center;
+background-image: url("https://www.shutterstock.com/image-photo/fresh-raw-vegetables-fruits-260nw-2539811481.jpg");      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .tagline {
+      font-size: 1.6rem;
+      color: #f61010;
+      text-align: center;
+      font-style: oblique;
+    }
+    section {
+      margin-bottom: 50px;
+      word-spacing: 5px;
+     
+    }
+    h1, h2, h3 {
+      color: #f61010;
+    }
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+    }
+    h2 {
+      font-size: 2rem;
+      border-bottom: 2px solid #f61010;
+      padding-bottom: 10px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    h3 {
+      font-size: 1.5rem;
+      text-align: center;
+    }
+    
+    p {
+      font-size: 1.1rem;
+    }
+    .roles-container {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 50px;
+      justify-content: center;
+      margin-top: 50px;
+    }
+    .role-card {
+      border-radius: 10px;
+      width: 350px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn {
+      display: inline-block;
+      background: #f92011;
+      color: white;
+      padding: 12px 30px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-left: 50px;
+    }
+h3:hover{
+  border-bottom: 2px groove red;
+ 
+}
+ 
+    .social-icons {
+      text-align: center;
+      margin: 60px 0;
+    }
+    .social-icons a {
+      color: #000;
+      font-size: 28px;
+      margin: 0 15px;
+    }
+hr{
+  
+  border: 1px ridge rgb(104, 102, 102)
+
+}
+
+
+  </style>
+</head>
+<body>
+
+
+  <div>
+    <header>
+      <div class="brand">Spice Bloom</div>
+      <p class="tagline">Where Every Recipe Tells a Story</p>
+    </header>
+    <section>
+      <h1>Welcome to Our Culinary Community</h1>
+      <p>At Spice Bloom, we believe cooking is more than just preparing food - it's about sharing traditions, creating memories, and exploring cultures through flavors. Our platform brings together food lovers from around the world to share, discover, and celebrate the art of cooking.</p>
+      <p>Whether you're a seasoned chef, a home cook, or someone who simply enjoys good food, you'll find your place in our vibrant community. Our members range from professional culinary artists to beginners taking their first steps in the kitchen.</p>
+    </section>
+    <hr>
+    <section>
+      <h2>Explore Our Website Features</h2>
+      <p>Spice Bloom offers a rich set of features designed to enhance your culinary journey. From discovering new recipes to sharing your own creations, our platform supports every aspect of your cooking adventure.</p>
+      <div class="roles-container">
+        <div class="role-card">
+          <img src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png"  alt="Food Explorer Icon" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%; border: 3px solid #f11313; display: block; margin: 0 auto 20px;">
+          <h3>Food Explorer</h3>
+          <p>Discover a world of flavors as a Food Explorer. Browse thousands of recipes from every cuisine imaginable, save your favorites, and connect with fellow food enthusiasts.</p>
+          <ul >
+            <li>Access to our entire recipe collection</li>
+            <li>Create personalized recipe books</li>
+            <li>Rate and review recipes</li>
+            <li>Comment on recipes and join discussions</li>
+          </ul>
+          <a href="/login/user" class="btn">Start Exploring</a>
+        </div>
+        <div class="role-card">
+          <img src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png"  alt="Recipe Sharer Icon" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%; border: 3px solid #f11313; display: block; margin: 0 auto 20px;">
+          <h3>Recipe Sharer</h3>
+          <p>Share your culinary creations with the world as a Recipe Sharer. Build your reputation, connect with followers, and inspire others with your unique recipes.</p>
+          <ul>
+            <li>Publish recipes with photos </li>
+            <li>Grow your culinary profile</li>
+            <li>Engage with your audience</li>
+            <li>Get featured in our community spotlight</li>
+          </ul>
+          <a href="/login/author" class="btn">Share Your Recipes</a>
+        </div>
+        <div class="role-card">
+          <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"  alt="Admin Icon" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%; border: 3px solid #f11313; display: block; margin: 0 auto 20px;">
+          <h3>Community Steward</h3>
+          <p>Help maintain our vibrant community as a Steward. Ensure quality content, resolve issues, and help shape the future of Spice Bloom.</p>
+          <ul>
+            <li>Manage recipe submissions</li>
+            <li>Moderate community content</li>
+            <li>Feature exceptional recipes</li>
+            <li>Organize community events</li>
+            <li>Help guide our platform's growth</li>
+          </ul>
+          <a href="/login/admin" class="btn">Admin Portal</a>
+        </div>
+      </div>
+    </section>
+    <hr>
+    <!-- <section>
+      <h2>Real Stories From Our Community</h2>
+      <div>
+        <p>"Spice Bloom completely transformed my relationship with cooking. I went from making the same five dishes every week to exploring cuisines from around the world. The community is so supportive and full of creative ideas that have helped me grow as a home cook."</p>
+        <p class="testimonial-author">- Sarah K., Home Cook from Chicago</p>
+      </div>
+      <div>
+        <p>"As a professional chef, I appreciate how Spice Bloom respects the craft while being accessible to home cooks. I've shared some of my restaurant recipes here and the feedback has been incredible. It's rewarding to see people recreating my dishes in their homes."</p>
+        <p class="testimonial-author">- Marco T., Executive Chef from New York</p>
+      </div>
+      <div>
+        <p>"I started sharing my grandmother's traditional recipes on Spice Bloom as a way to preserve our family's culinary heritage. The response has been overwhelming - thousands of people are now cooking our family dishes, keeping our traditions alive in kitchens around the world."</p>
+        <p>- Priya M., Food Blogger from Mumbai</p>
+      </div>
+    </section>
+    <hr> -->
+    <div>
+      <h2>How Spice Bloom Works</h2>
+      <p>Our platform is designed to create meaningful connections through food. Here's how you can get the most out of your Spice Bloom experience:</p>
+      <h3>For Food Explorers</h3>
+      <p>As a Food Explorer, you have full access to browse all public recipes on our platform. Use our powerful search tools to find exactly what you're craving - filter by cuisine, dietary restrictions, cooking time, or ingredients. Save your favorite recipes to personal collections, rate dishes you've tried, and leave comments to connect with recipe creators.</p>
+      <h3>For Recipe Sharers</h3>
+      <p>When you're ready to share your culinary creations, upgrade to a Recipe Sharer account. You'll be able to publish your original recipes with photos, step-by-step instructions, and even video demonstrations. Build your culinary profile as you gain followers, respond to comments, and participate in our monthly cooking challenges. Top contributors get featured in our community spotlight.</p>
+      <h3>Our Quality Promise</h3>
+      <p>Every recipe on Spice Bloom is reviewed by our community team to ensure quality and authenticity. We celebrate diverse culinary traditions while maintaining high standards for recipe clarity and food safety. Our community guidelines ensure respectful interactions and proper attribution for all shared content.</p>
+    </div>
+    <hr>
+  
+    <div class="social-icons">
+      <a href="https://facebook.com/spicebloom"  target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://instagram.com/spicebloom"  target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://pinterest.com/spicebloom"  target="_blank" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+      <a href="https://youtube.com/spicebloom"  target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="mailto:hello@spicebloom.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+    </div>
+  </div>
+</body>
+</html>

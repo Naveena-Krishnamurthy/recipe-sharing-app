@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cookshub | Reported Users</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #e31414;
+      padding-top: 80;
+      background: url('https://i.pinimg.com/736x/46/72/e7/4672e7278a6b2f5b0fea4acf59cc3650.jpg') no-repeat center center;
+      background-size: 100% 100%; 
+        min-height: 100vh;
+    }
+
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(231, 76, 60, 0.3);
+    }
+
+    h2 {
+      text-align: center;
+      color: #f80b0b;
+      margin-bottom: 100px;
+      font-size: 2rem;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      font-weight: bolder;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      color: #fff;
+      border: 2px groove red;
+    }
+
+    th, td {
+      text-align: center;
+      padding: 14px;
+      border-bottom: 1px solid #444;
+    }
+
+    th {
+      background-color: #f31d05;
+      color: #fff;
+    }
+
+    tr:nth-child(even) {
+      background-color: #2a2a2a;
+    }
+
+    tr:hover {
+      background-color: #3a3a3a;
+    }
+
+    button {
+      background-color: #e91c05;
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.2s;
+    }
+
+    button:hover {
+      background-color: #f10808;
+      transform: scale(1.05);
+    }
+
+    p {
+      text-align: center;
+      color: #ccc;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+        .back{
+  background-color: #b30000; 
+  color: white; 
+  border: none; 
+  padding: 10px 20px; 
+  border-radius: 6px; 
+  font-weight: bold; 
+  cursor: pointer;
+ position: absolute;
+ left:730px;
+ bottom: 20px;
+ width: 80px;
+ height: 50px;
+}
+  </style>
+</head>
+<body>
+
+    <h2> Admin Panel</h2>
+
+
+  <div class="container">
+    <h2>Reported Users</h2>
+    {% if reported_users %}
+    <table>
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Reported Comments</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in reported_users %}
+        <tr>
+          <td>{{ row.user_id }}</td>
+          <td>{{ row.report_count }}</td>
+          <td>
+            <form method="post" action="/remove_user">
+              <input type="hidden" name="user_id" value="{{ row.user_id }}">
+              <button type="submit" onclick="return confirm('Are you sure you want to delete this user and all their comments?');">
+                Delete User
+              </button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p>No reported users found.</p>
+    {% endif %}
+  </div>
+   <div style="padding: 10px 20px;">
+  <button onclick="history.back()" class="back">
+    ← Back
+  </button>
+</div>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ recipe.title }}</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('https://i.pinimg.com/736x/46/72/e7/4672e7278a6b2f5b0fea4acf59cc3650.jpg') no-repeat center center;
+      background-size: cover;
+      margin: 0;
+      padding: 40px;
+      color: #131313;
+      line-height: 1.6;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      color: #b30000;
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      color: #8b0000;
+      font-weight: normal;
+      font-size: 1.2rem;
+    }
+
+    img {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(199, 44, 65, 0.6);
+      margin: 20px auto;
+      display: block;
+    }
+
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .grid .section {
+      flex: 1 1 45%;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(199, 44, 65, 0.3);
+    }
+
+    h4 {
+      color: #b30000;
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    details {
+      margin-top: 40px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(199, 44, 65, 0.3);
+    }
+
+    summary {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #b30000;
+      cursor: pointer;
+    }
+
+    .comment-box {
+      margin-top: 15px;
+      padding: 12px;
+      border-left: 4px solid #b30000;
+      border-radius: 6px;
+      background: #fff5f5;
+    }
+
+    .comment-box strong {
+      color: #8b0000;
+    }
+
+    .no-comments {
+      margin-top: 15px;
+      font-style: italic;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 12px 24px;
+      background-color: #b30000;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+      box-shadow: 0 3px 10px rgba(199, 44, 65, 0.6);
+    }
+
+    .back-btn:hover {
+      background-color: #8b0000;
+    }
+
+    @media (max-width: 768px) {
+      .grid {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+  async function calculateNutrition() {
+    const ingredientsText = document.getElementById("ingredients-text").innerText;
+    const resultDiv = document.getElementById("nutritionResult");
+
+    if (!ingredientsText) {
+      resultDiv.innerHTML = " No ingredients found.";
+      return;
+    }
+
+    resultDiv.innerHTML = "⏳ Calculating nutrition...";
+
+    try {
+      const response = await fetch("https://api.calorieninjas.com/v1/nutrition?query=" + encodeURIComponent(ingredientsText), {
+        headers: {
+          'X-Api-Key': 'fz2PrNk2MjEYZKSwTbY6Dw==EkDUGuZKY0cwbdHN' 
+        }
+      });
+
+      const data = await response.json();
+
+      if (!data.items || data.items.length === 0) {
+        resultDiv.innerHTML = " Could not calculate nutrition. Try simplifying the ingredient format.";
+        return;
+      }
+
+      let total = {
+        calories: 0,
+        protein: 0,
+        fat: 0,
+        carbs: 0
+      };
+
+      data.items.forEach(item => {
+        total.calories += item.calories;
+        total.protein += item.protein_g;
+        total.fat += item.fat_total_g;
+        total.carbs += item.carbohydrates_total_g;
+      });
+
+      resultDiv.innerHTML = `
+        <strong>Nutrition Summary:</strong><br><br>
+        🔥 <b>Calories:</b> ${total.calories.toFixed(1)} kcal<br>
+        🥚 <b>Protein:</b> ${total.protein.toFixed(1)} g<br>
+        🥑 <b>Fat:</b> ${total.fat.toFixed(1)} g<br>
+        🍞 <b>Carbs:</b> ${total.carbs.toFixed(1)} g
+      `;
+    } catch (err) {
+      console.error(err);
+      resultDiv.innerHTML = "Error fetching nutrition data.";
+    }
+  }
+</script>
+
+  <div class="hero">
+    <h1>{{ recipe.title }}</h1>
+    <h3>Category: {{ recipe.category }}</h3>
+    <img src="{{ recipe.image_path }}" alt="Recipe Image" />
+  </div>
+<div class="section">
+  <h4>Ingredients</h4>
+  <p id="ingredients-text">{{ recipe.ingredients }}</p>
+
+  <details>
+    <summary style="cursor: pointer; font-weight: bold; margin-top: 10px;"> Calculate Nutrition</summary>
+    <div style="margin-top: 10px;">
+      <button onclick="calculateNutrition()" style="margin-top: 10px; padding: 10px 20px; background-color: #8b0000; color: white; border: none; border-radius: 6px; cursor: pointer;">
+         🥗 Calculate Nutrition
+      </button>
+      <div id="nutritionResult" style="margin-top: 15px; background: #fff5f5; padding: 12px; border-radius: 6px;"></div>
+    </div>
+  </details>
+</div>
+<br>
+
+    <div class="section">
+      <h4>Instructions</h4>
+      <p>{{ recipe.instructions }}</p>
+    </div>
+  </div>
+
+  <details>
+    <summary>💬 View Comments</summary>
+    {% if comments %}
+      {% for comment in comments %}
+        <div class="comment-box">
+          <p><strong>Comment:</strong> {{ comment.comment }}</p>
+          <p><strong>Rating:</strong> {{ comment.rating }} ⭐</p>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p class="no-comments">No comments yet. Be the first to review!</p>
+    {% endif %}
+  </details>
+
+  <a href="/user/dashboard" class="back-btn">⬅ Back to Dashboard</a>
+
+</body>
+</html>

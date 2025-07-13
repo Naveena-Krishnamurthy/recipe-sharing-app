@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Recipe Rating</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: url('https://i.pinimg.com/736x/46/72/e7/4672e7278a6b2f5b0fea4acf59cc3650.jpg') no-repeat center center;
+      background-size: cover;
+      padding: 2rem;
+      color: #4b0000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .back {
+      background-color: #c72c41;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .back:hover {
+      background-color: #8b0000;
+    }
+
+    .brand {
+      font-size: 1.8rem;
+      font-weight: bolder;
+      color: #fff5f5;
+      text-shadow: 2px 2px 3px #800000;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: 1100px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .left, .right {
+      flex: 1 1 50%;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      color: #b22222;
+      margin-bottom: 1.5rem;
+    }
+
+    .stars {
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+
+    .star {
+      font-size: 2.5rem;
+      color: #e0c0c0;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .star:hover, .star.active {
+      transform: scale(1.2);
+      color: #ff6b6b;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      padding: 0.75rem;
+      margin: 1rem 0;
+      border: 1px solid #e8c4c4;
+      border-radius: 8px;
+      background: #fff9f5;
+      font-size: 1rem;
+      resize: vertical;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      background: #c72c41;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #8b0000;
+    }
+
+    .comment {
+      background: #fff5f5;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid #f3cccc;
+    }
+
+    .comment strong {
+      color: #8b0000;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .reply {
+      margin-top: 1rem;
+      padding: 0.75rem;
+      background: #fff0f0;
+      border-left: 4px solid #c72c41;
+      border-radius: 6px;
+      font-size: 0.95rem;
+    }
+
+    .report-btn {
+      background: #dc3545;
+      margin-top: 0.6rem;
+      width: auto;
+      padding: 0.4rem 1rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+
+
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <a href="javascript:history.back()" class="back">← Back</a>
+    <div class="brand">Spice Bloom</div>
+  </div>
+
+  <div class="container">
+    <!-- LEFT PANEL: Rating Form -->
+    <div class="left">
+      <h1>Rate This Recipe</h1>
+
+      <form method="POST" action="/comment/post">
+        <div class="stars">
+          <span class="star" role="button" aria-label="1 star">★</span>
+          <span class="star" role="button" aria-label="2 stars">★</span>
+          <span class="star" role="button" aria-label="3 stars">★</span>
+          <span class="star" role="button" aria-label="4 stars">★</span>
+          <span class="star" role="button" aria-label="5 stars">★</span>
+        </div>
+
+        <input type="hidden" name="recipe_id" value="{{ recipe_id }}">
+        <input type="hidden" id="rating" name="rating" required>
+
+        <label for="comment">Your Review:</label>
+        <textarea id="comment" name="comment" placeholder="Share your thoughts..." required></textarea>
+
+        <button type="submit">Submit Review</button>
+      </form>
+    </div>
+
+    <!-- RIGHT PANEL: Feedback -->
+    <div class="right">
+      <h1>User Feedback</h1>
+
+      {% for comment in comments %}
+      <div class="comment">
+        <strong>{{ comment.username }}:</strong>
+        <p>{{ comment.comment }}</p>
+
+        <form action="/report_comment" method="POST">
+          <input type="hidden" name="comment_id" value="{{ comment.cid }}">
+          <button type="submit" class="report-btn">🚩 Report</button>
+        </form>
+
+        {% if comment.reply %}
+        <div class="reply">
+          <strong>Author Reply:</strong>
+          <p>{{ comment.reply }}</p>
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <script>
+    const stars = document.querySelectorAll('.star');
+    const ratingInput = document.getElementById('rating');
+
+    stars.forEach((star, index) => {
+      star.addEventListener('click', () => {
+        stars.forEach((s, i) => {
+          s.classList.toggle('active', i <= index);
+          s.style.color = i <= index ? '#ff6b6b' : '#e0c0c0';
+        });
+        ratingInput.value = index + 1;
+      });
+
+      star.addEventListener('mouseover', () => {
+        if (!ratingInput.value) {
+          stars.forEach((s, i) => {
+            s.style.color = i <= index ? '#ff6b6b' : '#e0c0c0';
+          });
+        }
+      });
+
+      star.addEventListener('mouseout', () => {
+        if (!ratingInput.value) {
+          stars.forEach(s => s.style.color = '#e0c0c0');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

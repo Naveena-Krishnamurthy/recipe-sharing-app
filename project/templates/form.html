@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<head>
+    <title>Post Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<style>
+  body {
+            background-image: url("https://static.vecteezy.com/system/resources/previews/012/714/663/non_2x/trendy-abstract-background-with-shapes-and-floral-element-modern-geometric-for-posters-blogs-wallpapersocial-media-posts-mobile-apps-banners-design-and-web-internet-ads-illustration-free-vector.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: "Lucida Calligraphy", cursive;
+            margin: 100px;
+            opacity:0.8;
+            align-items:center;
+             opacity:0.8;
+             background-attachment: fixed;
+               background-position: center;
+        }
+        .align {
+            padding: 40px 50px 50px 50px;
+            border: 5px groove purple;
+            border-radius: 20px;
+            width: 400px;
+            box-shadow: 0 0 10px gray;
+            margin:200px;
+        }
+   button{
+            background-color: #ff1493;
+            color: white;
+            border-radius: 5px;
+            border: 1px solid purple;
+            text-align: center;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+input[type="text"] {
+border-radius:5px;
+   border: 1px solid purple;
+background-color:aliceblue;
+}
+textarea {
+border-radius:5px;
+   border: 1px solid purple;
+background-color:aliceblue;
+}
+
+
+</style>
+<script>
+function greet() {
+      window.alert("Hello, welcome!");
+    }
+</script>
+<body onload="greet()"><div class="align">
+    <h2>Create a Post</h2>
+<p style="text-align:center; font-style:italic; font-size:14px; color:crimson;">
+   Express yourself freely 🌸
+</p>
+    <form action="/posts" method="post">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" required><br><br>
+
+        <label for="content">Content:</label><br>
+        <textarea id="content" name="content" rows="5" cols="40" placeholder="your thoughts" required></textarea><br><br>
+
+       <button type="submit">
+  <i class="fas fa-paper-plane"></i> post
+</button>
+    </form>
+    </div>
+{% if message %}<b>
+  <p style="color:black;">{{ message }}</p>
+{% endif %}
+</b>
+      <div><a href="/"><button>back</button></a></div>
+</body>
+</html>

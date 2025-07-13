@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Author Dashboard - Comments</title>
+ <style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+ background: url('https://i.pinimg.com/736x/46/72/e7/4672e7278a6b2f5b0fea4acf59cc3650.jpg') no-repeat center center;
+      background-size: 100% 100%;    color: #ff4d4d; /* red text */
+    line-height: 1.5;
+  }
+
+  h1 {
+    color: #ff1a1a; /* bright red */
+    margin-bottom: 25px;
+    font-weight: 700;
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .menu-bar {
+    margin-bottom: 30px;
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .menu-bar button {
+    background-color: #ff1a1a; /* red background */
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.25s ease, transform 0.2s ease;
+    font-size: 1.1rem;
+    box-shadow: 0 3px 8px rgb(255 26 26 / 0.6);
+    min-width: 140px;
+    text-align: center;
+    user-select: none;
+  }
+
+  .menu-bar button:hover,
+  .menu-bar button:focus {
+    background-color: #cc0000;
+    transform: translateY(-2px);
+    outline: none;
+    box-shadow: 0 5px 12px rgb(204 0 0 / 0.8);
+  }
+
+  .recipe {
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgb(255 26 26 / 0.15);
+    padding: 20px 24px;
+    margin-bottom: 28px;
+    color: #ff4d4d;
+  }
+
+  .recipe:hover {
+    box-shadow: 0 8px 22px rgb(255 26 26 / 0.35);
+    transform: rotatex(360deg);
+    transition: 3s;
+  }
+
+  .recipe-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #de1414;
+  }
+
+  /* .recipe-title div:first-child {
+    flex: 1 1 auto;
+    min-width: 180px;
+  } */
+
+  a.edit-link {
+    font-size: 0.95rem;
+    color: #ff1a1a;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+
+  a.edit-link:hover,
+  a.edit-link:focus {
+    background-color: #4d0000;
+    outline: none;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .recipe img {
+    border-radius: 10px;
+    max-width: 320px;
+    width: 100%;
+    height: auto;
+    box-shadow: 0 2px 12px rgb(255 26 26 / 0.25);
+    flex-shrink: 0;
+  }
+
+  details {
+    width: 100%;
+    margin-top: 22px;
+    border-top: 1px solid #cc0000;
+    padding-top: 16px;
+    color: #e92121;
+  }
+
+  details summary {
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    color: #ff1a1a;
+    list-style: none;
+    user-select: none;
+    outline: none;
+    transition: color 0.3s ease;
+  }
+
+  details[open] summary {
+    color: #ff4d4d;
+  }
+
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 12px;
+    color: #ff4d4d;
+  }
+
+  .comment {
+    padding: 14px 12px;
+    border-bottom: 1px solid #cc0000;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    transition: background-color 0.25s ease;
+    color: #ff6666;
+  }
+
+  .comment-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 0.95rem;
+    color: #ff4d4d;
+  }
+
+  .comment-stars {
+    color: #ff6666;
+    font-size: 1.2rem;
+    user-select: none;
+  }
+
+  .reply-section {
+    margin-top: 8px;
+    padding-left: 16px;
+    font-style: italic;
+    color: #cc0000;
+    font-size: 0.9rem;
+    border-left: 3px solid #ff1a1a;
+    user-select: none;
+  }
+
+  .reply-btn {
+    background: none;
+    border: none;
+    color: #ff1a1a;
+    cursor: pointer;
+    padding: 0;
+    font-size: 0.9rem;
+    margin-top: 6px;
+    font-weight: 600;
+    transition: color 0.25s ease;
+    user-select: none;
+  }
+
+  .reply-btn:hover,
+  .reply-btn:focus {
+    color: #cc0000;
+    text-decoration: underline;
+    outline: none;
+  }
+
+  .reply-form {
+    display: none;
+    margin-top: 10px;
+  }
+
+  .reply-form textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ff1a1a;
+    color: #ff4d4d;
+    resize: vertical;
+    font-family: inherit;
+    font-size: 1rem;
+    min-height: 60px;
+    transition: border-color 0.3s ease;
+  }
+
+  .reply-form textarea:focus {
+    border-color: #cc0000;
+    outline: none;
+    box-shadow: 0 0 6px #ff1a1a;
+  }
+
+  .reply-form button {
+    margin-top: 8px;
+    background-color: #ff1a1a;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    user-select: none;
+  }
+
+  .reply-form button:hover,
+  .reply-form button:focus {
+    background-color: #cc0000;
+    transform: translateY(-2px);
+    outline: none;
+  }
+
+  .no-comments {
+    font-style: italic;
+    color: #990000;
+    padding-left: 6px;
+    font-size: 0.95rem;
+  }
+</style>
+
+  <script>
+    function toggleReplyForm(button) {
+      const form = button.nextElementSibling;
+      if (form.style.display === 'block') {
+        form.style.display = 'none';
+      } else {
+        form.style.display = 'block';
+        form.querySelector('textarea').focus();
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <h1> Welcome, {{ username }}</h1>
+
+  <div class="menu-bar">
+    <button onclick="location.href='/author/recipe/add'"> Add New Recipe</button>
+    <button onclick="location.href='/logout'"> Logout</button>
+  </div>
+
+  {% for recipe in recipes %}
+  <div class="recipe">
+    <div class="recipe-title">
+      <div><strong>{{ recipe.title }}</strong> ({{ recipe.category }})</div>
+      <a class="edit-link" href="/author/recipe/edit/{{ recipe.id }}"> Edit</a>
+    </div>
+
+    <div class="recipe-content">
+      {% if recipe.image_path %}
+      <img src="{{ recipe.image_path }}" alt="Recipe Image" />
+      {% endif %}
+
+      <details class="comments">
+        <summary> Comments ({{ recipe.comments | length }})</summary>
+
+        {% if recipe.comments %}
+        <ul>
+          {% for c in recipe.comments %}
+          <li class="comment">
+            <div class="comment-text">
+              <div>{{ c.comment }}</div>
+              <div class="comment-stars">
+                {% for _ in range(c.rating) %}⭐{% endfor %}
+              </div>
+            </div>
+
+            {% if c.reply %}
+            <div class="reply-section"> <strong>Reply:</strong> {{ c.reply }}</div>
+            {% endif %}
+
+            <button type="button" class="reply-btn" onclick="toggleReplyForm(this)">Reply</button>
+
+            <form class="reply-form" method="post" action="/add/comm/{{ c.cid or 0 }}">
+              <textarea name="reply" rows="2" placeholder="Write a reply..."></textarea>
+              <button type="submit">Submit</button>
+            </form>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p class="no-comments">No comments yet.</p>
+        {% endif %}
+      </details>
+    </div>
+  </div>
+  {% endfor %}
+</body>
+</html>

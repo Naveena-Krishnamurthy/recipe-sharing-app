@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Edit Recipe</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+      color: rgb(4, 4, 4);
+      font-size: 20px;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+        background: url('https://i.pinimg.com/736x/46/72/e7/4672e7278a6b2f5b0fea4acf59cc3650.jpg') no-repeat center center;
+      background-size: 100% 100%;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 60px 20px 40px;
+      color: #e53935;
+    }
+
+    .form-wrapper {
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(229, 57, 53, 0.3);
+      width: 400px;
+      max-width: 95vw;
+      user-select: none;
+    }
+
+    h1 {
+      margin-bottom: 25px;
+      font-family: 'Georgia', serif;
+      font-weight: 700;
+      font-size: 1.9rem;
+      text-align: center;
+      color: #e40f0c;
+      text-shadow: 1px 1px 4px #8b1f1c;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 4px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #e53935;
+      font-family: 'Georgia', serif;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 8px 10px;
+      margin-bottom: 16px;
+      border-radius: 12px;
+      border: 2px solid #e53935;
+      font-size: 0.9rem;
+      color:black;
+      box-shadow: inset 1px 1px 5px rgba(229, 57, 53, 0.2);
+      transition: border-color 0.3s ease, background 0.3s ease;
+      resize: vertical;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus {
+      border-color: #ff8a65;
+      outline: none;
+      box-shadow: 0 0 10px #ff8a65;
+    }
+
+    textarea {
+      min-height: 80px;
+      max-height: 120px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px 0;
+      background-color: #e8120e;
+      color: #fdfdfd;
+      border: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 18px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(229, 57, 53, 0.5);
+      transition: background-color 0.3s ease;
+      font-family: 'Georgia', serif;
+    }
+
+    button:hover,
+    button:focus {
+      background-color: #eb0f0f;
+      outline: none;
+      box-shadow: 0 7px 20px rgba(198, 40, 40, 0.7);
+      color: #fff;
+    }
+
+    a.back-link {
+      display: block;
+      margin-top: 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #e53935;
+      text-align: center;
+      text-decoration: none;
+      font-family: 'Georgia', serif;
+      user-select: none;
+      transition: color 0.3s ease;
+    }
+
+    a.back-link:hover,
+    a.back-link:focus {
+      color: #c62828;
+      text-decoration: underline;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-wrapper">
+    <h1>Edit Recipe - {{ recipe.title }}</h1>
+    <form method="post" action="/author/recipe/edit/{{ recipe.id }}">
+      <label for="title">
+        <span class="material-symbols-outlined">edit_note</span> Title:
+      </label>
+      <input type="text" id="title" name="title" value="{{ recipe.title }}" required>
+
+      <label for="category">
+        <span class="material-symbols-outlined">category</span> Category:
+      </label>
+      <input type="text" id="category" name="category" value="{{ recipe.category }}" required>
+
+      <label for="ingredients">
+        <span class="material-symbols-outlined">restaurant_menu</span> Ingredients:
+      </label>
+      <textarea id="ingredients" name="ingredients" required>{{ recipe.ingredients }}</textarea>
+
+      <label for="instructions">
+        <span class="material-symbols-outlined">format_list_bulleted</span> Instructions:
+      </label>
+      <textarea id="instructions" name="instructions" required>{{ recipe.instructions }}</textarea>
+
+      <button type="submit">Update Recipe</button>
+    </form>
+    <a href="/author/dashboard" class="back-link">⬅ Back to Dashboard</a>
+  </div>
+</body>
+</html>

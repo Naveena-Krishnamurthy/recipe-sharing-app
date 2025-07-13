@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            background-image: url("https://static.vecteezy.com/system/resources/previews/012/714/663/non_2x/trendy-abstract-background-with-shapes-and-floral-element-modern-geometric-for-posters-blogs-wallpapersocial-media-posts-mobile-apps-banners-design-and-web-internet-ads-illustration-free-vector.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: "Lucida Calligraphy", cursive;
+            margin: 0;
+            padding: 0;
+        }
+
+        .banner {
+            margin: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50px;
+            text-align: center;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 10%;
+            opacity: 0.9;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            padding: 20px 40px;
+            border: 3px dashed purple;
+            border-radius: 15px;
+            font-size: 20px;
+            font-family: Arial, sans-serif;
+            cursor: pointer;
+            text-align: center;
+            background-color: white;
+        }
+
+        .card:hover {
+            background-color: rgb(255, 192, 219);
+            color: black;
+        }
+
+        .social-icons {
+            text-align: center;
+          margin-top: 250px;
+        }
+
+        .social-icons a {
+            color: #4b0082;
+            margin: 0 15px;
+            font-size: 30px;
+        }
+
+        .social-icons a:hover {
+            color: #ff1493;
+        }
+
+        footer {
+            text-align: center;
+        padding: 10px 0;
+            color: black;
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="banner">
+        <h1><marquee>Welcome to the Posting Site — Share Your Posts</marquee></h1>
+    </div>
+
+    <div class="cards">
+       <a href="/form"> <button class="card" >Post News</button></a>
+         <a href="/blog"><button class="card">Read News</button></a>
+    </div>
+
+    <div class="social-icons"><span class="down">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="mailto:youremail@example.com"><i class="fas fa-envelope"></i></a>
+        </span>
+    </div>
+
+    <footer>
+        &copy; 2025 Posting Site | Designed by You
+    </footer>
+</body>
+</html>

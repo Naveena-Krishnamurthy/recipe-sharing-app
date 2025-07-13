@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Add New Recipe</title>
+
+  <!-- Include Material Symbols (Outlined) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+      color: rgb(7, 7, 7);
+      font-size: 24px;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: url('https://i.pinimg.com/736x/46/72/e7/4672e7278a6b2f5b0fea4acf59cc3650.jpg') no-repeat center center;
+      background-size: 100% 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      color: #f44336; /* Warm red text */
+    }
+
+    .form-card {
+      border-radius: 20px;
+      padding: 30px;
+      width: 500px;
+      box-shadow: 0 10px 30px rgba(244, 67, 54, 0.4);
+    }
+
+    h1 {
+      text-align: center;
+      color: #f44336;
+      font-family: 'Georgia', serif;
+      margin-bottom: 24px;
+    }
+
+    .input-group {
+      margin-bottom: 18px;
+    }
+
+/* Hide the actual input */
+input[type="file"] {
+  display: none;
+}
+
+.upload-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #fcefee;
+  color: #b30000;
+  padding: 10px 24px;
+  font-size: 1rem;
+  border: 2px solid #b30000;
+  border-radius: 50px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.upload-label:hover {
+  background-color: #b30000;
+  color: white;
+}
+
+
+
+
+/* Optional: material icon size */
+.material-symbols-outlined {
+  font-size: 1.2rem;
+}
+
+
+    .input-group input,
+    .input-group textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 2px solid #f44336;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      color: #ef9a9a;
+      transition: border-color 0.3s;
+    }
+
+    .input-group input:focus,
+    .input-group textarea:focus {
+      border-color: #e57373;
+      outline: none;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 70px;
+    }
+
+    button {
+      width: 100%;
+      background-color: #f44336;
+      color: #121212;
+      padding: 12px;
+      font-weight: 700;
+      font-family: 'Georgia', serif;
+      font-size: 1rem;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 5px 12px rgba(244, 67, 54, 0.6);
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #d32f2f;
+      color: #fff;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 18px;
+      color: #f44336;
+      font-weight: 600;
+      text-decoration: none;
+      font-family: 'Georgia', serif;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-card">
+    <h1>
+      <span class="material-symbols-outlined">restaurant</span> Add Recipe
+    </h1>
+
+    <form method="post" action="/author/recipe/add" enctype="multipart/form-data">
+
+      <div class="input-group">
+        <label for="title">
+          <span class="material-symbols-outlined">edit_note</span> Title
+        </label>
+        <input type="text" id="title" name="title" required placeholder="fruit salad" />
+      </div>
+
+      <div class="input-group">
+        <label for="category">
+          <span class="material-symbols-outlined">category</span> Category
+        </label>
+        <input type="text" id="category" name="category" required placeholder="salad/cuisine"/>
+      </div>
+
+      <div class="input-group">
+        <label for="ingredients">
+          <span class="material-symbols-outlined">restaurant_menu</span> Ingredients
+        </label>
+        <textarea id="ingredients" name="ingredients" required placeholder="1.item1 
+                                                                            2.item2,.."></textarea>
+      </div>
+
+      <div class="input-group">
+        <label for="instructions">
+          <span class="material-symbols-outlined">format_list_bulleted</span> Instructions
+        </label>
+        <textarea id="instructions" name="instructions" required placeholder="1.wash the ingredients
+                                                                                2.cook well" ></textarea>
+      </div>
+
+      <div class="input-group">
+  <label for="image" class="upload-label">
+    <span class="material-symbols-outlined">upload</span> Upload Image
+  </label>
+  <input type="file" id="image" name="image" accept="image/*" required />
+</div>
+
+
+      <button type="submit">Submit Recipe</button>
+    </form>
+
+    <a href="/author/dashboard" class="back-link">← Back to Dashboard</a>
+  </div>
+</body>
+</html>

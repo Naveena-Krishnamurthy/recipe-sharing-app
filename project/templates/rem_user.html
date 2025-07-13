@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>All Recipes - Approvals</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+body {
+  font-family: cursive, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  background: url('https://i.pinimg.com/736x/46/72/e7/4672e7278a6b2f5b0fea4acf59cc3650.jpg') no-repeat center top;
+  background-size: cover;
+  background-attachment: fixed;
+  color: #800000;
+  min-height: 100vh;
+
+}
+
+    h1 {
+      text-align: center;
+      margin-top: 150px;
+      color: #f91212;
+      /* text-shadow: 0 0 5px #f86d6d; */
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 8px;
+      color: #eb3434;
+      
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 12px 16px;
+      border: 1px solid #e92020;
+      text-align: left;
+      border-radius: 12px;
+      max-width: 250px;
+      word-wrap: break-word;
+    }
+
+    th {
+      background-color: #df2020;
+      color: #1a1a1a;
+      font-weight: bold;
+    }
+
+    .status {
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+
+    .status.approved {
+      color: limegreen;
+    }
+
+    .status.pending {
+      color: orange;
+    }
+
+    .status.rejected {
+      color: crimson;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    button {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background-color 0.3s ease;
+      color: #1a1a1a;
+      /* box-shadow: 0 0 8px #f20a0a; */
+    }
+
+    .approve-btn {
+      background-color: #ef6464;
+    }
+
+    .approve-btn:hover {
+      background-color: #e12222;
+    }
+
+    .disapprove-btn {
+      background-color: #e84141;
+    }
+
+    .disapprove-btn:hover {
+      background-color: #ff0f0f;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      color:#ff1a1a;
+      /* text-shadow: 0 0 5px #ee5d5d; */
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+.foo {
+  font-size: 2rem;
+  font-weight: bolder;
+  text-align: center;
+  margin: 20px auto 40px auto; /* spacing around it */
+}
+
+.back-btn {
+  display: block;
+  padding: 10px;
+  margin: 50px auto 20px auto;
+  background-color: #f20a0a;
+  color: white;
+  width: 200px;
+  border-radius: 10px;
+  text-align: center;
+}
+.back-btn:hover{
+    text-decoration: none;
+}
+
+
+
+  </style>
+</head>
+<body>
+  <h1>All Recipes for Review</h1>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Recipe ID</th>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Ingredients</th>
+          <th>Instructions</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in comments %}
+        <tr>
+          <td>{{ c.id }}</td>
+          <td>{{ c.title }}</td>
+          <td>{{ c.category }}</td>
+          <td>{{ c.ingredients }}</td>
+          <td>{{ c.instructions }}</td>
+          <td class="status {{ c.status|lower }}">{{ c.status }}</td>
+          <td class="actions">
+            <form action="/admin/recipe-approve/{{ c.id }}" method="post">
+              <button type="submit" class="approve-btn">Approve</button>
+            </form>
+            <form action="/admin/recipe-dis/{{ c.id }}" method="post">
+              <button type="submit" class="disapprove-btn">Disapprove</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <a href="/admin/dashboard" class="back-btn">⬅ Back to Dashboard</a>
+  <div class="foo">
+  Spice Bloom</div>
+</body>
+</html>
