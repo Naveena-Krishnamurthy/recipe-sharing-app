@@ -1,7 +1,8 @@
 
 # 🍲 Recipe Sharing Platform
 
-A full-stack web application for sharing, saving, and rating cooking recipes. The platform supports multiple user roles (admin, author, user) and includes features like login, registration, recipe approval, comments with replies, reporting, and session-based authentication.
+A full-stack web application for sharing, saving, and rating cooking recipes. The platform supports multiple user roles (admin, author, user) and includes features like login, registration, recipe approval, comments with replies, reporting, and session-based authentication.This is a recipe sharing app built using FastAPI and PostgreSQL.
+
 
 ---
 
